@@ -1,0 +1,37 @@
+type Query {
+    articles: [Article]
+    authors: [Author]
+    authorById(id: ID!): Author
+}
+
+type Mutation {
+    createArticle(title: String!, content: String, authorId: ID!): Article
+    addArticle(article: ArticleInput!): Article
+    updateArticle(id: ID!, article: ArticleInput!): Article
+    deleteArticle(id: ID!): Article
+}
+
+input ArticleInput {
+    title: String!
+    content: String
+    authorId: ID!
+}
+
+type Author {
+    id: ID!
+    firstName: String!
+    lastName: String
+    articles: [Article]
+}
+
+type Article {
+    id: ID!
+    title: String!
+    content: String!
+    comments: [Comment]
+}
+
+type Comment {
+    id: ID!
+    message: String!
+}
